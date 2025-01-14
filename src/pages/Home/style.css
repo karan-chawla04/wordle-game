@@ -1,0 +1,54 @@
+.homeContainer {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--backgroundGrey);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.iconHolder img {
+  height: 100px;
+  width: 100px;
+}
+
+.buttonHolder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.buttonHolder button {
+  min-width: 180px;
+  background-color: var(--backgroundGrey);
+  padding: 14px 36px;
+  border: 1px solid black;
+  border-radius: 28px;
+  font-size: 20px;
+  font-family: "nyt-karnakcondensed";
+  font-weight: 400;
+}
+
+.buttonHolder button:hover {
+  cursor: pointer;
+  background-color: var(--backgroundGreyDark);
+}
+
+.buttonHolder button.main {
+  background-color: black;
+  color: white;
+}
+
+.buttonHolder button.main:hover {
+  cursor: pointer;
+}
+
+.disclaimer {
+  position: fixed;
+  bottom: 10px;
+}
