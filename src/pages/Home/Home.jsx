@@ -1,8 +1,16 @@
 import React from "react";
+import { useState } from "react";
 import { WordleIcon } from "../../images";
+import HowToPlayDialog from "../../components/HowToPlay/HowToPlayDialog";
 import "./style.css";
 
 const Home = () => {
+  const [htpOpen, setHtpOpen] = useState(false);
+
+  const toggleHowToPlay = () => {
+    setHtpOpen(!htpOpen);
+  };
+
   return (
     <div className="homeContainer">
       <div className="iconHolder">
@@ -11,7 +19,7 @@ const Home = () => {
       <h1>Wordle</h1>
       <div className="buttonHolder">
         <button>About</button>
-        <button>How to Play</button>
+        <button onClick={toggleHowToPlay}>How to Play</button>
         <button className="main">Play</button>
       </div>
       <div className="disclaimer">
@@ -19,6 +27,7 @@ const Home = () => {
         nytimes, it was created for learning purposes only. Please play the
         official game at nytime's official site. Thanks.
       </div>
+      <HowToPlayDialog isOpen={htpOpen} onClose={toggleHowToPlay} />
     </div>
   );
 };
