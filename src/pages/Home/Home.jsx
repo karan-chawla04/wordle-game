@@ -17,6 +17,7 @@ const Home = () => {
         <img src={WordleIcon} alt="" />
       </div>
       <h1>Wordle</h1>
+      <h2>Get 6 chances to guess the word</h2>
       <div className="buttonHolder">
         <button>About</button>
         <button onClick={toggleHowToPlay}>How to Play</button>

@@ -18,3 +18,42 @@
   background-color: var(--backgroundGrey);
   cursor: pointer;
 }
+
+.innerHtp {
+  height: calc(100% - 10px);
+  width: calc(100% - 120px);
+  position: absolute;
+  top: 10px;
+  left: 60px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.htpHead {
+  font-family: "nyt-karnakcondensed";
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: 0;
+  line-height: 30px;
+  text-transform: none;
+  text-align: left;
+  margin-bottom: 4px;
+  margin-top: 29px;
+  display: block;
+}
+
+.htpContent {
+  font-family: "nyt-karnak";
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+}
+
+.htpContent ul {
+  padding-inline-start: 20px;
+}

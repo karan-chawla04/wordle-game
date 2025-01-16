@@ -1,0 +1,42 @@
+.wordHolder {
+  display: flex;
+  justify-content: flex-start;
+  gap: 6px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.letterBox {
+  min-width: 40px;
+  min-height: 50px;
+  border: 2px solid var(--backgroundGreyDark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-transform: uppercase;
+  font-family: "nyt-karnakcondensed";
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: 0;
+  line-height: 30px;
+  text-align: left;
+}
+
+.letterBox.green {
+  color: white;
+  background-color: #6aaa64;
+  border-color: #6aaa64;
+}
+
+.letterBox.yellow {
+  color: white;
+  background-color: #c9b458;
+  border-color: #c9b458;
+}
+
+.letterBox.grey {
+  color: white;
+  background-color: #787c7e;
+  border-color: #787c7e;
+}
