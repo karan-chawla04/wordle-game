@@ -1,0 +1,30 @@
+.headerContainer {
+  width: calc(100% - 80px);
+  height: 64px;
+  border-bottom: 1px solid var(--backgroundGrey);
+  padding: 0px 40px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerLogo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+.headerLogo:hover {
+  cursor: pointer;
+}
+
+.headerLogo .headerIcon img {
+  height: 40px;
+  width: 40px;
+}
+
+.headerLogo h1 {
+  font-size: 34px;
+}
