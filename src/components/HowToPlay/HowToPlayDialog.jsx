@@ -22,9 +22,11 @@ const HowToPlayDialog = ({ isOpen, onClose }) => {
           <CloseIcon fontSize="large" />
         </button>
         <div className="innerHtp">
-          <div className="htpHead">How to Play</div>
+          <div>
+            <div className="htpHead">How to Play</div>
+            <div className="htpContent">Guess the Wordle in 6 tries.</div>
+          </div>
           <div className="htpContent">
-            Guess the Wordle in 6 tries.
             <ul>
               <li>Each guess must be a valid 5-letter word.</li>
               <li>
