@@ -1,0 +1,24 @@
+.emptyWordHolder {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.emptyLetterBox {
+  min-width: 54px;
+  min-height: 50px;
+  border: 2px solid var(--backgroundGreyDark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-transform: uppercase;
+  font-family: "nyt-karnakcondensed";
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: 0;
+  line-height: 30px;
+  text-align: left;
+}
