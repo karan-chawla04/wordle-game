@@ -5,7 +5,6 @@ import EmptyWord from "../../components/EmptyWord/EmptyWord";
 import VirtualKeyboard from "../../components/VirtualKeyboard/VirtualKeyboard";
 import "./style.css";
 import { isSingleLowercaseLetter } from "../../herlpers/general";
-import { getRandomWord } from "../../herlpers/general";
 
 const Game = () => {
   const [correctWord, setCorrectWord] = useState("");

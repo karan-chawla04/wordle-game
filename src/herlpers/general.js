@@ -6,29 +6,41 @@ export function isSingleLowercaseLetter(str) {
 export function getWordMatchArr(correctWord, userWord) {
   let wordArr = [];
   let correctWordMap = new Map();
-
-  for (let i = 0; i < correctWord.length; i++) {
-    const x = correctWord[i];
-    if (correctWordMap.has(x)) {
-      const currentCount = correctWordMap.get(x);
-      correctWordMap.set(x, currentCount + 1);
-    } else {
-      correctWordMap.set(x, 1);
-    }
-  }
-  console.log(correctWordMap);
+  let userWordMap = new Map();
 
   for (let i = 0; i < userWord.length; i++) {
-    const x = userWord[i];
-    if (x === correctWord[i]) {
-      wordArr.push([x, "green"]);
-      correctWordMap.set(x, correctWordMap.get(x) - 1);
+    const x1 = correctWord[i];
+    const x2 = userWord[i];
+
+    if (x1 === x2) {
+      continue;
+    }
+
+    if (correctWordMap.has(x1)) {
+      const currentCount = correctWordMap.get(x1);
+      correctWordMap.set(x1, currentCount + 1);
     } else {
-      if (correctWordMap.has(x) && correctWordMap.get(x) > 0) {
-        wordArr.push([x, "yellow"]);
-        correctWordMap.set(x, correctWordMap.get(x) - 1);
+      correctWordMap.set(x1, 1);
+    }
+    if (userWordMap.has(x2)) {
+      const currentCount = userWordMap.get(x2);
+      userWordMap.set(x2, currentCount + 1);
+    } else {
+      userWordMap.set(x2, 1);
+    }
+  }
+
+  for (let i = 0; i < userWord.length; i++) {
+    const x1 = correctWord[i];
+    const x2 = userWord[i];
+    if (x1 === x2) {
+      wordArr.push([x2, "green"]);
+    } else {
+      if (correctWordMap.has(x2) && correctWordMap.get(x2) > 0) {
+        wordArr.push([x2, "yellow"]);
+        correctWordMap.set(x2, correctWordMap.get(x2) - 1);
       } else {
-        wordArr.push([x, "grey"]);
+        wordArr.push([x2, "grey"]);
       }
     }
   }
