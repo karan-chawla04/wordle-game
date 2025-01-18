@@ -18,9 +18,6 @@ const HowToPlayDialog = ({ isOpen, onClose }) => {
       TransitionComponent={Transition}
     >
       <div className="htpContainer">
-        <button onClick={onClose} className="htpClose">
-          <CloseIcon fontSize="large" />
-        </button>
         <div className="innerHtp">
           <div>
             <div className="htpHead">How to Play</div>
@@ -55,6 +52,9 @@ const HowToPlayDialog = ({ isOpen, onClose }) => {
             <strong>U</strong> is not in the word in any spot.
           </div>
         </div>
+        <button onClick={onClose} className="htpClose">
+          <CloseIcon fontSize="large" />
+        </button>
       </div>
     </Dialog>
   );

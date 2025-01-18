@@ -52,3 +52,23 @@
   position: fixed;
   bottom: 10px;
 }
+
+@media only screen and (max-width: 768px) {
+  .homeContainer {
+    justify-content: flex-start;
+    padding-top: 10vh;
+    height: 90vh;
+  }
+  .homeContainer h1 {
+    margin: 20px 0px 0px 0px;
+  }
+  .homeContainer h2 {
+    margin: 10px 0px 20px 0px;
+    font-size: 1.2em;
+  }
+
+  .buttonHolder {
+    flex-direction: column-reverse;
+    gap: 24px;
+  }
+}
