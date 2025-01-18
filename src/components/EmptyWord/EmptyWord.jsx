@@ -1,9 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "./style.css";
+import { getWordMatchArr } from "../../herlpers/general";
 
-const EmptyWord = ({ isActive, userWord, submitted }) => {
+const EmptyWord = ({ isActive, userWord, submitted, correctWord }) => {
   const arr = [0, 1, 2, 3, 4];
+
+  let matchArr = [];
+  if (submitted) {
+    matchArr = getWordMatchArr(correctWord, userWord);
+    console.log(matchArr);
+  }
 
   return (
     <div className="emptyWordHolder">
@@ -15,23 +22,24 @@ const EmptyWord = ({ isActive, userWord, submitted }) => {
             </div>
           );
         } else {
+          if (submitted && matchArr && matchArr.length > 0) {
+            return (
+              <div key={i} className={`emptyLetterBox ${matchArr[i][1]}`}>
+                {userWord[i]}
+              </div>
+            );
+          }
+
           return (
-            <div key={i} className={`emptyLetterBox`}>
+            <div
+              key={i}
+              className={`emptyLetterBox ${submitted && "submitted"}`}
+            >
               {userWord[i]}
             </div>
           );
         }
       })}
-
-      {/* {userWord.length >= 0 && (
-        <>
-          <div className={`emptyLetterBox`}>{userWord[0] || ""}</div>
-          <div className={`emptyLetterBox`}>{userWord[1] || ""}</div>
-          <div className={`emptyLetterBox`}>{userWord[2] || ""}</div>
-          <div className={`emptyLetterBox`}>{userWord[3] || ""}</div>
-          <div className={`emptyLetterBox`}>{userWord[4] || ""}</div>
-        </>
-      )} */}
     </div>
   );
 };

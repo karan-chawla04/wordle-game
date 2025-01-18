@@ -79,6 +79,7 @@ const Game = () => {
                   <EmptyWord
                     userWord={attemptedWord}
                     key={index}
+                    submitted={true}
                     correctWord={correctWord}
                   />
                 );
