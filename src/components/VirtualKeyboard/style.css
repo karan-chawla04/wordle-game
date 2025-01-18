@@ -1,0 +1,31 @@
+.keyboardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.keyboardRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.keyboardKey {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 20px;
+  min-height: 30px;
+  padding: 20px;
+
+  background-color: var(--backgroundGrey);
+  border: 1px solid var(--backgroundGrey);
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 600;
+  border-radius: 10px;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import EmptyWord from "../../components/EmptyWord/EmptyWord";
+import VirtualKeyboard from "../../components/VirtualKeyboard/VirtualKeyboard";
 import "./style.css";
 
 function isSingleLowercaseLetter(str) {
@@ -10,9 +11,13 @@ function isSingleLowercaseLetter(str) {
 }
 
 const Game = () => {
-  const [attemptNumber, setAttemptNumber] = useState(1);
-  const [userWord, setUserWord] = useState("");
-  const [attemptedWords, setAttemptedWords] = useState([]);
+  const correctWord = "karan";
+
+  const [gameState, setGameState] = useState({
+    attemptsRemains: 6,
+    attemptedWords: [],
+    currentWord: "",
+  });
 
   const handleKey = (event) => {
     let key = event.key.toLowerCase();
@@ -20,17 +25,34 @@ const Game = () => {
     console.log(`You pressed a letter: ${key}`);
 
     if (isSingleLowercaseLetter(key)) {
-      setUserWord((prevUserWord) => {
-        if (prevUserWord.length < 5) {
-          console.log(prevUserWord);
-          return prevUserWord + key;
+      setGameState((prevGameState) => {
+        let gameState = { ...prevGameState };
+        if (gameState.currentWord.length < 5) {
+          gameState.currentWord = gameState.currentWord + key;
         }
-        return prevUserWord;
+        return gameState;
       });
     }
 
     if (key === "backspace") {
-      setUserWord((prevUserWord) => prevUserWord.slice(0, -1));
+      setGameState((prevGameState) => {
+        let gameState = { ...prevGameState };
+        gameState.currentWord = gameState.currentWord.slice(0, -1);
+        return gameState;
+      });
+    }
+
+    if (key === "enter") {
+      setGameState((prevGameState) => {
+        let gameState = { ...prevGameState };
+        console.log(gameState.currentWord);
+        if (gameState.currentWord.length === 5) {
+          gameState.attemptedWords.push(gameState.currentWord);
+          gameState.currentWord = "";
+          gameState.attemptsRemains = gameState.attemptsRemains - 1;
+        }
+        return gameState;
+      });
     }
   };
 
@@ -42,18 +64,41 @@ const Game = () => {
     };
   }, []);
 
+  useEffect(() => {
+    console.log(gameState);
+  }, [gameState]);
+
   return (
     <>
       <Header />
       <div className="GameArea">
-        <div>
-          <EmptyWord userWord={userWord} isActive={attemptNumber === 1} />
-          <EmptyWord userWord={userWord} isActive={attemptNumber === 2} />
-          <EmptyWord userWord={userWord} isActive={attemptNumber === 3} />
-          <EmptyWord userWord={userWord} isActive={attemptNumber === 4} />
-          <EmptyWord userWord={userWord} isActive={attemptNumber === 5} />
-          <EmptyWord userWord={userWord} isActive={attemptNumber === 6} />
-        </div>
+        {gameState && (
+          <>
+            {gameState.attemptedWords.map((attemptedWord, index) => {
+              if (index % 2 === 0) {
+                return (
+                  <EmptyWord
+                    userWord={attemptedWord}
+                    key={index}
+                    correctWord={correctWord}
+                  />
+                );
+              } else {
+                return null;
+              }
+            })}
+            <EmptyWord userWord={gameState.currentWord} />
+            {Array.from(
+              { length: gameState.attemptsRemains - 1 },
+              (_, index) => {
+                return <EmptyWord key={index} userWord="" />;
+              }
+            )}
+          </>
+        )}
+      </div>
+      <div className="KeyboardArea">
+        <VirtualKeyboard gameState={gameState} correctWord={correctWord} />
       </div>
     </>
   );

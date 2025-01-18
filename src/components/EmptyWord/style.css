@@ -1,9 +1,8 @@
 .emptyWordHolder {
   display: flex;
   justify-content: flex-start;
-  gap: 20px;
+  gap: 8px;
   text-transform: uppercase;
-  margin-bottom: 5px;
 }
 
 .emptyLetterBox {
