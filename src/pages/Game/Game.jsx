@@ -4,16 +4,13 @@ import Header from "../../components/Header/Header";
 import EmptyWord from "../../components/EmptyWord/EmptyWord";
 import VirtualKeyboard from "../../components/VirtualKeyboard/VirtualKeyboard";
 import "./style.css";
-
-function isSingleLowercaseLetter(str) {
-  const regex = /^[a-z]$/;
-  return regex.test(str);
-}
+import { isSingleLowercaseLetter } from "../../herlpers/general";
 
 const Game = () => {
   const correctWord = "karan";
 
   const [gameState, setGameState] = useState({
+    correctWord: correctWord,
     attemptsRemains: 6,
     attemptedWords: [],
     currentWord: "",
@@ -21,7 +18,6 @@ const Game = () => {
 
   const handleKey = (event) => {
     let key = event.key.toLowerCase();
-    console.log(`You pressed a letter on keyboard: ${key}`);
     handleGameUpdate(key);
   };
 
@@ -47,10 +43,8 @@ const Game = () => {
     if (key === "enter") {
       setGameState((prevGameState) => {
         let gameState = { ...prevGameState };
-        console.log(gameState.currentWord);
         if (gameState.currentWord.length === 5) {
           if (gameState.currentWord === correctWord) {
-            console.log("correct word");
           }
           gameState.attemptedWords.push(gameState.currentWord);
           gameState.currentWord = "";
@@ -105,7 +99,6 @@ const Game = () => {
       <div className="KeyboardArea">
         <VirtualKeyboard
           gameState={gameState}
-          correctWord={correctWord}
           handleGameUpdate={handleGameUpdate}
         />
       </div>

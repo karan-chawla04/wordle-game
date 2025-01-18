@@ -29,3 +29,8 @@
   font-weight: 600;
   border-radius: 10px;
 }
+
+.keyboardKey.block {
+  background-color: var(--backgroundGreyDark);
+  border: 1px solid var(--backgroundGreyDark);
+}
