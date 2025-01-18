@@ -5,16 +5,38 @@ import EmptyWord from "../../components/EmptyWord/EmptyWord";
 import VirtualKeyboard from "../../components/VirtualKeyboard/VirtualKeyboard";
 import "./style.css";
 import { isSingleLowercaseLetter } from "../../herlpers/general";
+import { getRandomWord } from "../../herlpers/general";
 
 const Game = () => {
-  const correctWord = "karan";
-
+  const [correctWord, setCorrectWord] = useState("");
   const [gameState, setGameState] = useState({
     correctWord: correctWord,
     attemptsRemains: 6,
     attemptedWords: [],
     currentWord: "",
   });
+
+  useEffect(() => {
+    const fetchWords = async () => {
+      try {
+        const response = await fetch("/data/commonWords5.txt"); // Adjust the path as necessary
+        const text = await response.text();
+        const wordsArray = text.split("\n");
+        const randomIndex = Math.floor(Math.random() * wordsArray.length);
+        const randomWord = wordsArray[randomIndex];
+        setCorrectWord(randomWord);
+        setGameState((prevGameState) => {
+          let gameState = { ...prevGameState };
+          gameState.correctWord = randomWord;
+          return gameState;
+        });
+      } catch (error) {
+        console.error("Error fetching the words:", error);
+      }
+    };
+
+    fetchWords();
+  }, []);
 
   const handleKey = (event) => {
     let key = event.key.toLowerCase();

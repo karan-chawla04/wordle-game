@@ -35,3 +35,16 @@ export function getWordMatchArr(correctWord, userWord) {
 
   return wordArr;
 }
+
+export const getRandomWord = async () => {
+  try {
+    const response = await fetch("./data/commonWords5.txt"); // Adjust the path as necessary
+    const text = await response.text();
+    const wordsArray = text.split("\n").filter((word) => word.length === 5); // Filter for 5-letter words
+    const randomIndex = Math.floor(Math.random() * wordsArray.length);
+    return wordsArray[randomIndex];
+  } catch (error) {
+    console.error("Error fetching the words:", error);
+    return null; // Return null or handle the error as needed
+  }
+};
