@@ -4,7 +4,7 @@ import { Sets } from "../../herlpers/dataStructures";
 
 const VirtualKeyboard = ({ gameState, handleGameUpdate }) => {
   const row1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
-  const row2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l", "b.space"];
+  const row2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l", "bs"];
   const row3 = ["z", "x", "c", "v", "b", "n", "m", "enter"];
 
   let userUsedLetters = new Set();
@@ -26,7 +26,7 @@ const VirtualKeyboard = ({ gameState, handleGameUpdate }) => {
   );
 
   const handleKeyPress = (key) => {
-    if (key === "b.space") {
+    if (key === "b.space" || key === "bs") {
       key = "backspace";
     }
     handleGameUpdate(key);

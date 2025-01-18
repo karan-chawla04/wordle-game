@@ -34,3 +34,19 @@
   background-color: var(--backgroundGreyDark);
   border: 1px solid var(--backgroundGreyDark);
 }
+
+@media only screen and (max-width: 768px) {
+  .keyboardContainer {
+    gap: 7px;
+  }
+  .keyboardRow {
+    gap: 5px;
+    justify-content: space-evenly;
+  }
+  .keyboardKey {
+    min-width: calc(10vw - 12px);
+    min-height: 60px;
+    padding: 10px;
+    font-size: 14px;
+  }
+}
