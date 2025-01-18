@@ -21,9 +21,11 @@ const Game = () => {
 
   const handleKey = (event) => {
     let key = event.key.toLowerCase();
+    console.log(`You pressed a letter on keyboard: ${key}`);
+    handleGameUpdate(key);
+  };
 
-    console.log(`You pressed a letter: ${key}`);
-
+  const handleGameUpdate = (key) => {
     if (isSingleLowercaseLetter(key)) {
       setGameState((prevGameState) => {
         let gameState = { ...prevGameState };
@@ -47,6 +49,9 @@ const Game = () => {
         let gameState = { ...prevGameState };
         console.log(gameState.currentWord);
         if (gameState.currentWord.length === 5) {
+          if (gameState.currentWord === correctWord) {
+            console.log("correct word");
+          }
           gameState.attemptedWords.push(gameState.currentWord);
           gameState.currentWord = "";
           gameState.attemptsRemains = gameState.attemptsRemains - 1;
@@ -98,7 +103,11 @@ const Game = () => {
         )}
       </div>
       <div className="KeyboardArea">
-        <VirtualKeyboard gameState={gameState} correctWord={correctWord} />
+        <VirtualKeyboard
+          gameState={gameState}
+          correctWord={correctWord}
+          handleGameUpdate={handleGameUpdate}
+        />
       </div>
     </>
   );
