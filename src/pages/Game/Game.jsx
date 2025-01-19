@@ -39,6 +39,9 @@ const Game = () => {
 
   const handleKey = (event) => {
     let key = event.key.toLowerCase();
+    if (key === "enter" || key === "backspace") {
+      event.preventDefault();
+    }
     handleGameUpdate(key);
   };
 
@@ -95,7 +98,21 @@ const Game = () => {
         {gameState && (
           <>
             {gameState.attemptedWords.map((attemptedWord, index) => {
-              if (index % 2 === 0) {
+              const numberOfAttempts = 6 - gameState.attemptsRemains;
+              if (gameState.attemptedWords.length === 2 * numberOfAttempts) {
+                if (index % 2 === 0) {
+                  return (
+                    <EmptyWord
+                      userWord={attemptedWord}
+                      key={index}
+                      submitted={true}
+                      correctWord={correctWord}
+                    />
+                  );
+                } else {
+                  return null;
+                }
+              } else {
                 return (
                   <EmptyWord
                     userWord={attemptedWord}
@@ -104,16 +121,18 @@ const Game = () => {
                     correctWord={correctWord}
                   />
                 );
-              } else {
-                return null;
               }
             })}
-            <EmptyWord userWord={gameState.currentWord} />
-            {Array.from(
-              { length: gameState.attemptsRemains - 1 },
-              (_, index) => {
-                return <EmptyWord key={index} userWord="" />;
-              }
+            {!!gameState.attemptsRemains && (
+              <>
+                <EmptyWord userWord={gameState.currentWord} />
+                {Array.from(
+                  { length: gameState.attemptsRemains - 1 },
+                  (_, index) => {
+                    return <EmptyWord key={index} userWord="" />;
+                  }
+                )}
+              </>
             )}
           </>
         )}
