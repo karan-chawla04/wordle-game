@@ -14,25 +14,29 @@ const EmptyWord = ({ isActive, userWord, submitted, correctWord, shake }) => {
   return (
     <div className={`emptyWordHolder ${!!shake && "shake"}`}>
       {arr.map((i) => {
+        const delay = submitted ? `${i * 0.1}s` : "0s";
+
         if (userWord.length <= i) {
           return (
-            <div key={i} className={`emptyLetterBox`}>
+            <div
+              key={i}
+              className={`emptyLetterBox`}
+              style={{ animationDelay: delay }}
+            >
               {""}
             </div>
           );
         } else {
-          if (submitted && matchArr && matchArr.length > 0) {
-            return (
-              <div key={i} className={`emptyLetterBox ${matchArr[i][1]}`}>
-                {userWord[i]}
-              </div>
-            );
-          }
+          const className =
+            submitted && matchArr && matchArr.length > 0
+              ? `emptyLetterBox ${matchArr[i][1]}`
+              : `emptyLetterBox ${submitted && "submitted"}`;
 
           return (
             <div
               key={i}
-              className={`emptyLetterBox ${submitted && "submitted"}`}
+              className={className}
+              style={{ animationDelay: delay }}
             >
               {userWord[i]}
             </div>

@@ -106,6 +106,8 @@ const Game = () => {
           } else {
             performVibration();
           }
+        } else {
+          performVibration();
         }
         return gameState;
       });
