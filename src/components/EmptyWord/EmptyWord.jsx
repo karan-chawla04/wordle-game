@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "./style.css";
-import { getWordMatchArr } from "../../herlpers/general";
+import { getWordMatchArr } from "../../helpers/general";
 
 const EmptyWord = ({ isActive, userWord, submitted, correctWord, shake }) => {
   const arr = [0, 1, 2, 3, 4];

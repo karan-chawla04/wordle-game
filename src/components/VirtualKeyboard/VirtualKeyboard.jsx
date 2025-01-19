@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import { Sets } from "../../herlpers/dataStructures";
+import { Sets } from "../../helpers/dataStructures";
 
 const VirtualKeyboard = ({ gameState, handleGameUpdate }) => {
   const row1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];

@@ -4,7 +4,7 @@ import Header from "../../components/Header/Header";
 import EmptyWord from "../../components/EmptyWord/EmptyWord";
 import VirtualKeyboard from "../../components/VirtualKeyboard/VirtualKeyboard";
 import "./style.css";
-import { isSingleLowercaseLetter } from "../../herlpers/general";
+import { isSingleLowercaseLetter } from "../../helpers/general";
 import GameOverDialog from "../../components/GameOver/GameOverDialog";
 
 const Game = () => {
