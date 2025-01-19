@@ -9,7 +9,6 @@ const EmptyWord = ({ isActive, userWord, submitted, correctWord }) => {
   let matchArr = [];
   if (submitted) {
     matchArr = getWordMatchArr(correctWord, userWord);
-    console.log(matchArr);
   }
 
   return (

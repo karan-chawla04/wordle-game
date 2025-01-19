@@ -16,6 +16,7 @@ const Game = () => {
     currentWord: "",
     winner: false,
   });
+  const [openGameOver, setOpenGameOver] = useState(false);
 
   useEffect(() => {
     const fetchWords = async () => {
@@ -51,6 +52,9 @@ const Game = () => {
     if (isSingleLowercaseLetter(key)) {
       setGameState((prevGameState) => {
         let gameState = { ...prevGameState };
+        if (gameState.attemptsRemains <= 0 || gameState.winner) {
+          return gameState;
+        }
         if (gameState.currentWord.length < 5) {
           gameState.currentWord = gameState.currentWord + key;
         }
@@ -69,9 +73,10 @@ const Game = () => {
     if (key === "enter") {
       setGameState((prevGameState) => {
         let gameState = { ...prevGameState };
+        if (gameState.attemptsRemains <= 0 || gameState.winner) {
+          return gameState;
+        }
         if (gameState.currentWord.length === 5) {
-          if (gameState.currentWord === correctWord) {
-          }
           gameState.attemptedWords.push(gameState.currentWord);
           gameState.currentWord = "";
           gameState.attemptsRemains = gameState.attemptsRemains - 1;
@@ -100,6 +105,13 @@ const Game = () => {
           gameState.winner = true;
           return gameState;
         });
+        setInterval(() => {
+          setOpenGameOver(true);
+        }, 1500);
+      } else if (gameState.attemptsRemains === 0) {
+        setInterval(() => {
+          setOpenGameOver(true);
+        }, 1500);
       }
     }
   }, [gameState]);
@@ -156,10 +168,7 @@ const Game = () => {
           handleGameUpdate={handleGameUpdate}
         />
       </div>
-      <GameOverDialog
-        isOpen={gameState.winner || gameState.attemptsRemains === 0}
-        gameState={gameState}
-      />
+      <GameOverDialog isOpen={openGameOver} gameState={gameState} />
     </>
   );
 };

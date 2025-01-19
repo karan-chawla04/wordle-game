@@ -25,7 +25,6 @@ const GameWord = ({ userWord, correctWord, custom = false, colors }) => {
         correctWordMap.set(x, 1);
       }
     }
-    console.log(correctWordMap);
 
     for (let i = 0; i < userWord.length; i++) {
       const x = userWord[i];
