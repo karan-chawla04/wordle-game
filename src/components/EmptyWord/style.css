@@ -1,3 +1,25 @@
+@keyframes shake {
+  0% {
+    transform: translate(5px, 0);
+  }
+  25% {
+    transform: translate(-5px, 0);
+  }
+  50% {
+    transform: translate(5px, 0);
+  }
+  75% {
+    transform: translate(-5px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
 .emptyWordHolder {
   display: flex;
   justify-content: flex-start;

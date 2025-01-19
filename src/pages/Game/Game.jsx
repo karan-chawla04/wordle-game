@@ -15,8 +15,17 @@ const Game = () => {
     attemptedWords: [],
     currentWord: "",
     winner: false,
+    allWords: null,
   });
+  const [vibrateWord, setVibrateWord] = useState(false);
   const [openGameOver, setOpenGameOver] = useState(false);
+
+  const performVibration = () => {
+    setVibrateWord(true);
+    setTimeout(() => {
+      setVibrateWord(false);
+    }, 400);
+  };
 
   useEffect(() => {
     const fetchWords = async () => {
@@ -26,10 +35,20 @@ const Game = () => {
         const wordsArray = text.split("\n");
         const randomIndex = Math.floor(Math.random() * wordsArray.length);
         const randomWord = wordsArray[randomIndex];
+
         setCorrectWord(randomWord);
+
+        const response2 = await fetch("/data/moreWords5.txt"); // Adjust the path as necessary
+        const text2 = await response2.text();
+        const wordsArray2 = text2.split("\n");
+        const combinedArray = [...wordsArray, ...wordsArray2];
+        const uniqueStrings = new Set(combinedArray);
+        // setAllWords(uniqueStrings);
+
         setGameState((prevGameState) => {
           let gameState = { ...prevGameState };
           gameState.correctWord = randomWord;
+          gameState.allWords = uniqueStrings;
           return gameState;
         });
       } catch (error) {
@@ -77,9 +96,16 @@ const Game = () => {
           return gameState;
         }
         if (gameState.currentWord.length === 5) {
-          gameState.attemptedWords.push(gameState.currentWord);
-          gameState.currentWord = "";
-          gameState.attemptsRemains = gameState.attemptsRemains - 1;
+          if (
+            !!gameState.allWords &&
+            gameState.allWords.has(gameState.currentWord)
+          ) {
+            gameState.attemptedWords.push(gameState.currentWord);
+            gameState.currentWord = "";
+            gameState.attemptsRemains = gameState.attemptsRemains - 1;
+          } else {
+            performVibration();
+          }
         }
         return gameState;
       });
@@ -105,11 +131,11 @@ const Game = () => {
           gameState.winner = true;
           return gameState;
         });
-        setInterval(() => {
+        setTimeout(() => {
           setOpenGameOver(true);
         }, 1500);
       } else if (gameState.attemptsRemains === 0) {
-        setInterval(() => {
+        setTimeout(() => {
           setOpenGameOver(true);
         }, 1500);
       }
@@ -150,7 +176,10 @@ const Game = () => {
             })}
             {!!gameState.attemptsRemains && (
               <>
-                <EmptyWord userWord={gameState.currentWord} />
+                <EmptyWord
+                  userWord={gameState.currentWord}
+                  shake={vibrateWord}
+                />
                 {Array.from(
                   { length: gameState.attemptsRemains - 1 },
                   (_, index) => {

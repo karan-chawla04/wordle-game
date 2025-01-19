@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "./style.css";
 import { getWordMatchArr } from "../../herlpers/general";
 
-const EmptyWord = ({ isActive, userWord, submitted, correctWord }) => {
+const EmptyWord = ({ isActive, userWord, submitted, correctWord, shake }) => {
   const arr = [0, 1, 2, 3, 4];
 
   let matchArr = [];
@@ -12,7 +12,7 @@ const EmptyWord = ({ isActive, userWord, submitted, correctWord }) => {
   }
 
   return (
-    <div className="emptyWordHolder">
+    <div className={`emptyWordHolder ${!!shake && "shake"}`}>
       {arr.map((i) => {
         if (userWord.length <= i) {
           return (
