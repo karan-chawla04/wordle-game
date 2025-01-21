@@ -2,15 +2,19 @@
   0% {
     transform: translate(5px, 0);
   }
+
   25% {
     transform: translate(-5px, 0);
   }
+
   50% {
     transform: translate(5px, 0);
   }
+
   75% {
     transform: translate(-5px, 0);
   }
+
   100% {
     transform: translate(0, 0);
   }
@@ -20,9 +24,11 @@
   0% {
     transform: rotateX(0deg);
   }
+
   50% {
     transform: rotateX(90deg);
   }
+
   100% {
     transform: rotateX(0deg);
   }
@@ -35,12 +41,14 @@
     border: 2px solid var(--backgroundGreyDark);
     background-color: white;
   }
+
   50% {
     transform: rotateX(90deg);
     color: black;
     border: 2px solid var(--backgroundGreyDark);
     background-color: white;
   }
+
   100% {
     transform: rotateX(0deg);
     color: white;
@@ -56,12 +64,14 @@
     border: 2px solid var(--backgroundGreyDark);
     background-color: white;
   }
+
   50% {
     transform: rotateX(90deg);
     color: black;
     border: 2px solid var(--backgroundGreyDark);
     background-color: white;
   }
+
   100% {
     transform: rotateX(0deg);
     color: white;
@@ -77,12 +87,14 @@
     border: 2px solid var(--backgroundGreyDark);
     background-color: white;
   }
+
   50% {
     transform: rotateX(90deg);
     color: black;
     border: 2px solid var(--backgroundGreyDark);
     background-color: white;
   }
+
   100% {
     transform: rotateX(0deg);
     color: white;
@@ -98,7 +110,7 @@
 .emptyWordHolder {
   display: flex;
   justify-content: flex-start;
-  gap: 8px;
+  gap: 0.3rem;
   text-transform: uppercase;
 }
 
@@ -119,15 +131,30 @@
   letter-spacing: 0;
   line-height: 30px;
   text-align: left;
-  backface-visibility: hidden; /* Prevent backface from showing */
+  backface-visibility: hidden;
+  /* Prevent backface from showing */
+}
+
+
+@media only screen and (max-width: 1400px) {
+  .emptyLetterBox {
+    min-width: 44px;
+    min-height: 40px;
+    font-size: 32px;
+  }
 }
 
 .emptyLetterBox.grey {
-  animation: turnToGrey 0.6s ease-in-out forwards; /* Apply the rotation animation */
+  animation: turnToGrey 0.6s ease-in-out forwards;
+  /* Apply the rotation animation */
 }
+
 .emptyLetterBox.green {
-  animation: turnToGreen 0.6s ease-in-out forwards; /* Apply the rotation animation */
+  animation: turnToGreen 0.6s ease-in-out forwards;
+  /* Apply the rotation animation */
 }
+
 .emptyLetterBox.yellow {
-  animation: turnToYellow 0.6s ease-in-out forwards; /* Apply the rotation animation */
+  animation: turnToYellow 0.6s ease-in-out forwards;
+  /* Apply the rotation animation */
 }

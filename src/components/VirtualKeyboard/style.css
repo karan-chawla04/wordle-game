@@ -1,9 +1,24 @@
+@keyframes dissapear {
+  from {
+    display: flex;
+  }
+
+  to {
+    display: none;
+  }
+}
+
 .keyboardContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
   flex-direction: column;
+}
+
+.keyboardContainer.gameOver {
+  animation: dissapear 0.2s ease-in forwards;
+  animation-delay: 1.5s;
 }
 
 .keyboardRow {
@@ -35,14 +50,32 @@
   border: 1px solid var(--backgroundGreyDark);
 }
 
+@media only screen and (max-width: 1400px) {
+  .keyboardContainer {
+    gap: 8px;
+  }
+
+  .keyboardRow {
+    gap: 10px;
+  }
+
+  .keyboardKey {
+    min-width: 16px;
+    min-height: 24px;
+    font-size: 18px;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .keyboardContainer {
     gap: 7px;
   }
+
   .keyboardRow {
     gap: 5px;
     justify-content: space-evenly;
   }
+
   .keyboardKey {
     min-width: calc(10vw - 12px);
     min-height: 60px;

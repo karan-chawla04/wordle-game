@@ -32,8 +32,9 @@ const VirtualKeyboard = ({ gameState, handleGameUpdate }) => {
     handleGameUpdate(key);
   };
 
+  const gameOver = gameState.winner || gameState.attemptsRemains === 0;
   return (
-    <div className="keyboardContainer">
+    <div className={`keyboardContainer ${gameOver ? "gameOver" : ""}`}>
       <div className="keyboardRow">
         {row1.map((key, index) => {
           const block = notInWordLetters.has(key) ? "block" : null;
