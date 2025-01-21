@@ -28,6 +28,69 @@
   }
 }
 
+@keyframes turnToGrey {
+  0% {
+    transform: rotateX(0deg);
+    color: black;
+    border: 2px solid var(--backgroundGreyDark);
+    background-color: white;
+  }
+  50% {
+    transform: rotateX(90deg);
+    color: black;
+    border: 2px solid var(--backgroundGreyDark);
+    background-color: white;
+  }
+  100% {
+    transform: rotateX(0deg);
+    color: white;
+    background-color: #787c7e;
+    border-color: #787c7e;
+  }
+}
+
+@keyframes turnToGreen {
+  0% {
+    transform: rotateX(0deg);
+    color: black;
+    border: 2px solid var(--backgroundGreyDark);
+    background-color: white;
+  }
+  50% {
+    transform: rotateX(90deg);
+    color: black;
+    border: 2px solid var(--backgroundGreyDark);
+    background-color: white;
+  }
+  100% {
+    transform: rotateX(0deg);
+    color: white;
+    background-color: #6aaa64;
+    border-color: #6aaa64;
+  }
+}
+
+@keyframes turnToYellow {
+  0% {
+    transform: rotateX(0deg);
+    color: black;
+    border: 2px solid var(--backgroundGreyDark);
+    background-color: white;
+  }
+  50% {
+    transform: rotateX(90deg);
+    color: black;
+    border: 2px solid var(--backgroundGreyDark);
+    background-color: white;
+  }
+  100% {
+    transform: rotateX(0deg);
+    color: white;
+    background-color: #c9b458;
+    border-color: #c9b458;
+  }
+}
+
 .shake {
   animation: shake 0.4s ease-in-out;
 }
@@ -42,7 +105,9 @@
 .emptyLetterBox {
   min-width: 54px;
   min-height: 50px;
+  color: black;
   border: 2px solid var(--backgroundGreyDark);
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,20 +123,11 @@
 }
 
 .emptyLetterBox.grey {
-  animation: rotateX 0.6s ease-in-out forwards; /* Apply the rotation animation */
-  color: white;
-  background-color: #787c7e;
-  border-color: #787c7e;
+  animation: turnToGrey 0.6s ease-in-out forwards; /* Apply the rotation animation */
 }
 .emptyLetterBox.green {
-  animation: rotateX 0.6s ease-in-out forwards; /* Apply the rotation animation */
-  color: white;
-  background-color: #6aaa64;
-  border-color: #6aaa64;
+  animation: turnToGreen 0.6s ease-in-out forwards; /* Apply the rotation animation */
 }
 .emptyLetterBox.yellow {
-  animation: rotateX 0.6s ease-in-out forwards; /* Apply the rotation animation */
-  color: white;
-  background-color: #c9b458;
-  border-color: #c9b458;
+  animation: turnToYellow 0.6s ease-in-out forwards; /* Apply the rotation animation */
 }
