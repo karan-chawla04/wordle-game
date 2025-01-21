@@ -4,7 +4,11 @@ import Header from "../../components/Header/Header";
 import EmptyWord from "../../components/EmptyWord/EmptyWord";
 import VirtualKeyboard from "../../components/VirtualKeyboard/VirtualKeyboard";
 import "./style.css";
-import { isSingleLowercaseLetter } from "../../helpers/general";
+import {
+  isSingleLowercaseLetter,
+  getRandomWord,
+  checkWordExistence,
+} from "../../helpers/general";
 import GameOverDialog from "../../components/GameOver/GameOverDialog";
 
 const Game = () => {
@@ -15,7 +19,6 @@ const Game = () => {
     attemptedWords: [],
     currentWord: "",
     winner: false,
-    allWords: null,
   });
   const [vibrateWord, setVibrateWord] = useState(false);
   const [openGameOver, setOpenGameOver] = useState(false);
@@ -30,25 +33,11 @@ const Game = () => {
   useEffect(() => {
     const fetchWords = async () => {
       try {
-        const response = await fetch("/data/commonWords5.txt"); // Adjust the path as necessary
-        const text = await response.text();
-        const wordsArray = text.split("\n");
-        const randomIndex = Math.floor(Math.random() * wordsArray.length);
-        const randomWord = wordsArray[randomIndex];
-
+        const randomWord = getRandomWord();
         setCorrectWord(randomWord);
-
-        const response2 = await fetch("/data/moreWords5.txt"); // Adjust the path as necessary
-        const text2 = await response2.text();
-        const wordsArray2 = text2.split("\n");
-        const combinedArray = [...wordsArray, ...wordsArray2];
-        const uniqueStrings = new Set(combinedArray);
-        // setAllWords(uniqueStrings);
-
         setGameState((prevGameState) => {
           let gameState = { ...prevGameState };
           gameState.correctWord = randomWord;
-          gameState.allWords = uniqueStrings;
           return gameState;
         });
       } catch (error) {
@@ -96,10 +85,7 @@ const Game = () => {
           return gameState;
         }
         if (gameState.currentWord.length === 5) {
-          if (
-            !!gameState.allWords &&
-            gameState.allWords.has(gameState.currentWord)
-          ) {
+          if (checkWordExistence(gameState.currentWord)) {
             gameState.attemptedWords.push(gameState.currentWord);
             gameState.currentWord = "";
             gameState.attemptsRemains = gameState.attemptsRemains - 1;
