@@ -34,23 +34,37 @@ const Game = () => {
     }, 400);
   };
 
-  useEffect(() => {
-    const fetchWords = async () => {
-      try {
-        const randomWord = getRandomWord();
-        setCorrectWord(randomWord);
-        setGameState((prevGameState) => {
-          let gameState = { ...prevGameState };
-          gameState.correctWord = randomWord;
-          return gameState;
-        });
-      } catch (error) {
-        console.error("Error fetching the words:", error);
-      }
-    };
+  const fetchWord = () => {
+    try {
+      const randomWord = getRandomWord();
+      setCorrectWord(randomWord);
+      setGameState((prevGameState) => {
+        let gameState = { ...prevGameState };
+        gameState.correctWord = randomWord;
+        return gameState;
+      });
+    } catch (error) {
+      console.error("Error fetching the words:", error);
+    }
+  };
 
-    fetchWords();
+  useEffect(() => {
+    fetchWord();
   }, []);
+
+  const resetGame = (mode = "normal") => {
+    if (mode === "normal") {
+      setGameState({
+        correctWord: "",
+        attemptsRemains: 6,
+        attemptedWords: [],
+        currentWord: "",
+        winner: false,
+      });
+      fetchWord();
+      setOpenGameOver(false);
+    }
+  };
 
   const handleKey = (event) => {
     let key = event.key.toLowerCase();
@@ -193,6 +207,7 @@ const Game = () => {
         isOpen={openGameOver}
         gameState={gameState}
         onClose={toggleGameOver}
+        resetGame={resetGame}
       />
     </>
   );

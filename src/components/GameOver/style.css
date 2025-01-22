@@ -2,6 +2,12 @@
   padding: 20px;
   min-height: 400px;
   min-width: 500px;
+  margin-top: 12px;
+
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .gameOverClose {
@@ -22,13 +28,31 @@
 .gameWinner {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
   justify-content: center;
 }
 
 .gameLoser {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
+  justify-content: flex-start;
+}
+
+.gameOverNav {
+  display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .gameOverContainer {
+    min-height: 600px;
+    min-width: 320px;
+  }
+
+  .gameOverClose {
+    top: 26px;
+    right: 10px;
+  }
 }

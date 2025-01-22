@@ -3,6 +3,7 @@ import { Dialog } from "@mui/material";
 import Slide from "@mui/material/Slide";
 import CloseIcon from "@mui/icons-material/Close";
 import GameWord from "../GameWord/GameWord";
+import HiddenGameWord from "../HiddenGameWord/HiddenGameWord";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +11,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const GameOverDialog = ({ isOpen, gameState, gameReset, onClose }) => {
+const GameOverDialog = ({ isOpen, gameState, resetGame, onClose }) => {
   const navigate = useNavigate();
   const [revealWord, setRevealWord] = useState(false);
 
@@ -42,25 +43,17 @@ const GameOverDialog = ({ isOpen, gameState, gameReset, onClose }) => {
                 ? "Not bad,"
                 : "Phew, barely made it!"}{" "}
               You guessed the word in {`${6 - gameState.attemptsRemains}`}{" "}
-              chances.
+              tries.
             </h4>
             <GameWord
               userWord={gameState.correctWord}
               correctWord={gameState.correctWord}
             />
-            <button>Play Again</button>
-            <button onClick={navigateHome}>Home</button>
           </div>
         ) : (
           <div className="gameLoser">
             <h2>Ohh...</h2>
             <h4>You couldn't guess the word</h4>
-            <GameWord
-              userWord={
-                gameState.attemptedWords[gameState.attemptedWords.length - 1]
-              }
-              correctWord={gameState.correctWord}
-            ></GameWord>
             {revealWord ? (
               <GameWord
                 userWord={gameState.correctWord}
@@ -68,20 +61,27 @@ const GameOverDialog = ({ isOpen, gameState, gameReset, onClose }) => {
               />
             ) : (
               <>
-                <h4>Click the button below to reveal the word</h4>
-                <button
-                  onClick={() => {
+                <HiddenGameWord
+                  word={gameState.correctWord}
+                  reveal={() => {
                     setRevealWord(true);
                   }}
-                >
-                  Reveal
-                </button>
+                />
               </>
             )}
-            <button>Play Again</button>
-            <button onClick={navigateHome}>Home</button>
           </div>
         )}
+
+        <div className="gameOverNav">
+          <button
+            onClick={() => {
+              resetGame("normal");
+            }}
+          >
+            Play Again
+          </button>
+          <button onClick={navigateHome}>Home</button>
+        </div>
       </div>
 
       <button onClick={onClose} className="gameOverClose">

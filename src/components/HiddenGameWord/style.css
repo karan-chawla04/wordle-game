@@ -1,0 +1,48 @@
+.hiddenWordHolder {
+  display: flex;
+  justify-content: flex-start;
+  gap: 6px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.hiddenWordHolder .letterBox {
+  min-width: 40px;
+  min-height: 50px;
+  border: 2px solid var(--backgroundGreyDark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-transform: uppercase;
+  font-family: "nyt-karnakcondensed";
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: 0;
+  line-height: 30px;
+  text-align: left;
+
+  color: white;
+  background-color: #6aaa64;
+  border-color: #6aaa64;
+  filter: blur(4px);
+}
+
+.blurrBox {
+  position: absolute;
+  height: 100%;
+  width: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.revealLink {
+  text-decoration: underline;
+
+}
+
+.revealLink:hover {
+  cursor: pointer;
+}
