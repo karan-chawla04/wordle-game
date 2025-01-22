@@ -1,8 +1,7 @@
 .gameOverContainer {
-  background-color: aquamarine;
   padding: 20px;
-  min-height: 600px;
-  min-width: 600px;
+  min-height: 400px;
+  min-width: 500px;
 }
 
 .gameOverClose {
@@ -13,4 +12,23 @@
   right: 22px;
   border: 0px;
   border-radius: 40px;
+}
+
+.gameOverClose:hover {
+  background-color: var(--backgroundGrey);
+  cursor: pointer;
+}
+
+.gameWinner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.gameLoser {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
 }

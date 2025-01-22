@@ -23,6 +23,10 @@ const Game = () => {
   const [vibrateWord, setVibrateWord] = useState(false);
   const [openGameOver, setOpenGameOver] = useState(false);
 
+  const toggleGameOver = () => {
+    setOpenGameOver(!openGameOver);
+  };
+
   const performVibration = () => {
     setVibrateWord(true);
     setTimeout(() => {
@@ -185,7 +189,11 @@ const Game = () => {
           handleGameUpdate={handleGameUpdate}
         />
       </div>
-      <GameOverDialog isOpen={openGameOver} gameState={gameState} />
+      <GameOverDialog
+        isOpen={openGameOver}
+        gameState={gameState}
+        onClose={toggleGameOver}
+      />
     </>
   );
 };
