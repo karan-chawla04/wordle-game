@@ -75,10 +75,10 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .keyboardContainer {
+  /* .keyboardContainer {
     display: none;
     gap: 7px;
-  }
+  } */
 
   .mobileKeyboardContainer {
     display: flex;

@@ -38,11 +38,11 @@ const VirtualKeyboard = ({ gameState, handleGameUpdate }) => {
         gameOver={gameOver}
         notInWordLetters={notInWordLetters}
       />
-      <MobileKeyboard
+      {/* <MobileKeyboard
         handleKeyPress={handleKeyPress}
         gameOver={gameOver}
         notInWordLetters={notInWordLetters}
-      />
+      /> */}
     </>
   );
 };
