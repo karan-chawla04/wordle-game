@@ -50,6 +50,14 @@
   border: 1px solid var(--backgroundGreyDark);
 }
 
+.mobileKeyboardContainer {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-height: 280px;
+}
+
 @media only screen and (max-width: 1400px) {
   .keyboardContainer {
     gap: 8px;
@@ -68,7 +76,16 @@
 
 @media only screen and (max-width: 768px) {
   .keyboardContainer {
+    display: none;
     gap: 7px;
+  }
+
+  .mobileKeyboardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
   }
 
   .keyboardRow {
