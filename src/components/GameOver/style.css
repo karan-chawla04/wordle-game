@@ -33,22 +33,56 @@
 }
 
 .gameLoser {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .gameOverNav {
   display: flex;
+  flex-direction: column;
+  gap: 15px;
   justify-content: center;
+  align-items: flex-start;
+}
+
+.gameOverNav .navButtonHolder {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.navButton {
+  min-width: auto !important;
+  width: calc(50% - 8px);
+  height: 50px;
+  border-radius: 20px;
+  border: 1px solid var(--backgroundGreyDark);
+}
+
+.navButton.main {
+  min-width: auto !important;
+  width: 100%;
+  height: 50px;
+  border-radius: 20px;
+  border: 1px solid var(--backgroundGreyDark);
+}
+
+.navButton:hover {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {
   .gameOverContainer {
-    min-height: 600px;
-    min-width: 320px;
+    min-height: 55vh;
+    min-width: calc(80vw - 30px);
+
   }
 
   .gameOverClose {

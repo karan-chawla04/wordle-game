@@ -73,14 +73,35 @@ const GameOverDialog = ({ isOpen, gameState, resetGame, onClose }) => {
         )}
 
         <div className="gameOverNav">
-          <button
-            onClick={() => {
-              resetGame("normal");
-            }}
-          >
-            Play Again
-          </button>
-          <button onClick={navigateHome}>Home</button>
+          <h4>
+            {gameState.winner
+              ? "Is this too easy for you? You should try with hard word."
+              : "Dont feel bad, you should try again with a differnt word."}
+          </h4>
+          <div className="navButtonHolder">
+            <button
+              className="navButton main"
+              onClick={() => {
+                resetGame("normal");
+              }}
+            >
+              Play Again
+            </button>
+            <button
+              className="navButton main"
+              onClick={() => {
+                resetGame("normal");
+              }}
+            >
+              Play Again (Hard Word)
+            </button>
+            <button className="navButton" onClick={navigateHome}>
+              Home
+            </button>
+            <button className="navButton" onClick={navigateHome}>
+              Share Game
+            </button>
+          </div>
         </div>
       </div>
 
