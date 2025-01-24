@@ -82,6 +82,7 @@ const GameOverDialog = ({ isOpen, gameState, resetGame, onClose }) => {
             <button
               className="navButton main"
               onClick={() => {
+                setRevealWord(false);
                 resetGame("normal");
               }}
             >
@@ -90,7 +91,8 @@ const GameOverDialog = ({ isOpen, gameState, resetGame, onClose }) => {
             <button
               className="navButton main"
               onClick={() => {
-                resetGame("normal");
+                setRevealWord(false);
+                resetGame("hard");
               }}
             >
               Play Again (Hard Word)

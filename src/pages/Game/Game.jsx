@@ -7,6 +7,7 @@ import "./style.css";
 import {
   isSingleLowercaseLetter,
   getRandomWord,
+  getRandomHardWord,
   checkWordExistence,
 } from "../../helpers/general";
 import GameOverDialog from "../../components/GameOver/GameOverDialog";
@@ -34,9 +35,14 @@ const Game = () => {
     }, 400);
   };
 
-  const fetchWord = () => {
+  const fetchWord = (mode) => {
     try {
-      const randomWord = getRandomWord();
+      let randomWord;
+      if (mode === "hard") {
+        randomWord = getRandomHardWord();
+      } else {
+        randomWord = getRandomWord();
+      }
       setCorrectWord(randomWord);
       setGameState((prevGameState) => {
         let gameState = { ...prevGameState };
@@ -53,17 +59,15 @@ const Game = () => {
   }, []);
 
   const resetGame = (mode = "normal") => {
-    if (mode === "normal") {
-      setGameState({
-        correctWord: "",
-        attemptsRemains: 6,
-        attemptedWords: [],
-        currentWord: "",
-        winner: false,
-      });
-      fetchWord();
-      setOpenGameOver(false);
-    }
+    setGameState({
+      correctWord: "",
+      attemptsRemains: 6,
+      attemptedWords: [],
+      currentWord: "",
+      winner: false,
+    });
+    fetchWord(mode);
+    setOpenGameOver(false);
   };
 
   const handleKey = (event) => {

@@ -1,4 +1,4 @@
-import { commonWordArr, allWordSet } from "./dictionary";
+import { commonWordArr, allWordSet, hardWordsArr } from "./dictionary";
 
 export function isSingleLowercaseLetter(str) {
   const regex = /^[a-z]$/;
@@ -53,6 +53,12 @@ export function getWordMatchArr(correctWord, userWord) {
 export const getRandomWord = () => {
   const randomIndex = Math.floor(Math.random() * commonWordArr.length);
   const randomWord = commonWordArr[randomIndex];
+  return randomWord;
+};
+
+export const getRandomHardWord = () => {
+  const randomIndex = Math.floor(Math.random() * hardWordsArr.length);
+  const randomWord = hardWordsArr[randomIndex];
   return randomWord;
 };
 
