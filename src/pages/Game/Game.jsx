@@ -24,6 +24,7 @@ const Game = () => {
   });
   const [vibrateWord, setVibrateWord] = useState(false);
   const [openGameOver, setOpenGameOver] = useState(false);
+  const [gameCompleted, setGameCompleted] = useState(false);
 
   const toggleGameOver = () => {
     setOpenGameOver(!openGameOver);
@@ -95,6 +96,7 @@ const Game = () => {
     });
     fetchWord(mode);
     setOpenGameOver(false);
+    setGameCompleted(false);
   };
 
   const handleKey = (event) => {
@@ -172,11 +174,17 @@ const Game = () => {
         setTimeout(() => {
           setOpenGameOver(true);
         }, 1500);
+        setTimeout(() => {
+          setGameCompleted(true);
+        }, 1600);
       } else if (gameState.attemptsRemains === 0) {
         saveGame(false);
         setTimeout(() => {
           setOpenGameOver(true);
         }, 1500);
+        setTimeout(() => {
+          setGameCompleted(true);
+        }, 1600);
       }
     }
   }, [gameState]);
@@ -228,6 +236,14 @@ const Game = () => {
               </>
             )}
           </>
+        )}
+
+        {gameCompleted && (
+          <div onClick={toggleGameOver} className="gameLink">
+            {gameState.winner
+              ? "You won, open game summary"
+              : "You lost, open game summary"}
+          </div>
         )}
       </div>
       <div className="KeyboardArea">

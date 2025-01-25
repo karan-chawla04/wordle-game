@@ -7,6 +7,17 @@
   gap: 0.3rem;
 }
 
+.gameLink {
+  text-decoration: underline;
+  padding: 4px;
+  font-size: medium;
+  font-weight: 600;
+}
+
+.gameLink:hover {
+  cursor: pointer;
+}
+
 .KeyboardArea {
   padding: 0px 40px;
   display: flex;
