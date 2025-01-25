@@ -21,7 +21,7 @@ const HowToPlayDialog = ({ isOpen, onClose }) => {
         <div className="innerHtp">
           <div>
             <div className="htpHead">How to Play</div>
-            <div className="htpContent">Guess the Wordle in 6 tries.</div>
+            <div className="htpContent">Guess the Word in 6 tries.</div>
           </div>
           <div className="htpContent">
             <ul>

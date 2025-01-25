@@ -6,7 +6,6 @@
 
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .headerLogo {
@@ -27,4 +26,32 @@
 
 .headerLogo h1 {
   font-size: 34px;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.headerButton {
+  height: 100%;
+  padding: 1vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+}
+
+.headerButton:hover {
+  cursor: pointer;
+  background-color: var(--backgroundGrey);
+}
+
+@media only screen and (max-width: 768px) {
+  .headerContent {
+    display: none;
+  }
 }
