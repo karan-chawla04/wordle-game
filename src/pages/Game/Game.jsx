@@ -20,12 +20,31 @@ const Game = () => {
     attemptedWords: [],
     currentWord: "",
     winner: false,
+    mode: "normal",
   });
   const [vibrateWord, setVibrateWord] = useState(false);
   const [openGameOver, setOpenGameOver] = useState(false);
 
   const toggleGameOver = () => {
     setOpenGameOver(!openGameOver);
+  };
+
+  const saveGame = (winner) => {
+    const pastGames = localStorage.getItem("pastGames");
+    const currentGame = {
+      word: gameState.correctWord,
+      winner: winner,
+      attempts: 6 - gameState.attemptsRemains,
+      mode: gameState.mode,
+    };
+    if (pastGames) {
+      let pastGamesArr = JSON.parse(pastGames);
+      pastGamesArr.push(currentGame);
+      localStorage.setItem("pastGames", JSON.stringify(pastGamesArr));
+    } else {
+      let pastGamesArr = [currentGame];
+      localStorage.setItem("pastGames", JSON.stringify(pastGamesArr));
+    }
   };
 
   const performVibration = () => {
@@ -40,15 +59,23 @@ const Game = () => {
       let randomWord;
       if (mode === "hard") {
         randomWord = getRandomHardWord();
+        setCorrectWord(randomWord);
+        setGameState((prevGameState) => {
+          let gameState = { ...prevGameState };
+          gameState.correctWord = randomWord;
+          gameState.mode = "hard";
+          return gameState;
+        });
       } else {
         randomWord = getRandomWord();
+        setCorrectWord(randomWord);
+        setGameState((prevGameState) => {
+          let gameState = { ...prevGameState };
+          gameState.correctWord = randomWord;
+          gameState.mode = "normal";
+          return gameState;
+        });
       }
-      setCorrectWord(randomWord);
-      setGameState((prevGameState) => {
-        let gameState = { ...prevGameState };
-        gameState.correctWord = randomWord;
-        return gameState;
-      });
     } catch (error) {
       console.error("Error fetching the words:", error);
     }
@@ -141,10 +168,12 @@ const Game = () => {
           gameState.winner = true;
           return gameState;
         });
+        saveGame(true);
         setTimeout(() => {
           setOpenGameOver(true);
         }, 1500);
       } else if (gameState.attemptsRemains === 0) {
+        saveGame(false);
         setTimeout(() => {
           setOpenGameOver(true);
         }, 1500);
