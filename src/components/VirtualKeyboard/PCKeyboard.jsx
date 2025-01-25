@@ -1,12 +1,12 @@
 import React from "react";
 
-const PCKeyboard = ({ handleKeyPress, gameOver, notInWordLetters }) => {
+const PCKeyboard = ({ handleKeyPress, notInWordLetters }) => {
   const row1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
   const row2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l", "bs"];
   const row3 = ["z", "x", "c", "v", "b", "n", "m", "enter"];
 
   return (
-    <div className={`keyboardContainer ${gameOver ? "gameOver" : ""}`}>
+    <div className={`keyboardContainer`}>
       <div className="keyboardRow">
         {row1.map((key, index) => {
           const block = notInWordLetters.has(key) ? "block" : null;

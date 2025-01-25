@@ -30,17 +30,14 @@ const VirtualKeyboard = ({ gameState, handleGameUpdate }) => {
     handleGameUpdate(key);
   };
 
-  const gameOver = gameState.winner || gameState.attemptsRemains === 0;
   return (
     <>
       <PCKeyboard
         handleKeyPress={handleKeyPress}
-        gameOver={gameOver}
         notInWordLetters={notInWordLetters}
       />
       {/* <MobileKeyboard
         handleKeyPress={handleKeyPress}
-        gameOver={gameOver}
         notInWordLetters={notInWordLetters}
       /> */}
     </>
