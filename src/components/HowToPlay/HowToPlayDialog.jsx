@@ -2,12 +2,8 @@ import React from "react";
 import { Dialog } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import "./style.css";
-import Slide from "@mui/material/Slide";
 import GameWord from "../GameWord/GameWord";
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+import SlideUp from "../../Transitions/SlideUp";
 
 const HowToPlayDialog = ({ isOpen, onClose }) => {
   return (
@@ -15,7 +11,7 @@ const HowToPlayDialog = ({ isOpen, onClose }) => {
       open={isOpen}
       onClose={onClose}
       maxWidth="md"
-      TransitionComponent={Transition}
+      TransitionComponent={SlideUp}
     >
       <div className="htpContainer">
         <div className="innerHtp">

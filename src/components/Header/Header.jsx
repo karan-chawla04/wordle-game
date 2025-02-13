@@ -8,14 +8,20 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import HowToPlayDialog from "../HowToPlay/HowToPlayDialog";
 import HomeIcon from "@mui/icons-material/Home";
 import Tooltip from "@mui/material/Tooltip";
+import StatsDialog from "../Stats/StatsDialog";
 
 const Header = () => {
   const navigate = useNavigate();
 
   const [htpOpen, setHtpOpen] = useState(false);
+  const [statOpen, setStateOpen] = useState(false);
 
   const toggleHtp = () => {
     setHtpOpen(!htpOpen);
+  };
+
+  const toggleStat = () => {
+    setStateOpen(!statOpen);
   };
 
   const navigateHome = () => {
@@ -37,7 +43,7 @@ const Header = () => {
           </button>
         </Tooltip>
         <Tooltip title="Stats" arrow>
-          <button className="headerButton">
+          <button onClick={toggleStat} className="headerButton">
             <BarChartIcon fontSize="large" />
           </button>
         </Tooltip>
@@ -53,6 +59,7 @@ const Header = () => {
         </Tooltip>
       </div>
       <HowToPlayDialog isOpen={htpOpen} onClose={toggleHtp} />
+      <StatsDialog isOpen={statOpen} onClose={toggleStat} />
     </div>
   );
 };

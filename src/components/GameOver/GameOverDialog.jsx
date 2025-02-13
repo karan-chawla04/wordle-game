@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import { Dialog } from "@mui/material";
-import Slide from "@mui/material/Slide";
 import CloseIcon from "@mui/icons-material/Close";
 import GameWord from "../GameWord/GameWord";
 import HiddenGameWord from "../HiddenGameWord/HiddenGameWord";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+import SlideUp from "../../Transitions/SlideUp";
 
 const GameOverDialog = ({ isOpen, gameState, resetGame, onClose }) => {
   const navigate = useNavigate();
@@ -23,7 +19,7 @@ const GameOverDialog = ({ isOpen, gameState, resetGame, onClose }) => {
     <Dialog
       open={isOpen}
       maxWidth="md"
-      TransitionComponent={Transition}
+      TransitionComponent={SlideUp}
       onClose={onClose}
     >
       <div className="gameOverContainer">
