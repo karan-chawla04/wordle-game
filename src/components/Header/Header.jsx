@@ -72,7 +72,26 @@ const Header = () => {
       </div>
       <HowToPlayDialog isOpen={htpOpen} onClose={toggleHtp} />
       <StatsDialog isOpen={statOpen} onClose={toggleStat} />
-      <MobileNav isOpen={navOpen} onClose={toggleNav} />
+      <MobileNav isOpen={navOpen} onClose={toggleNav}>
+        <div className="mobileNavContainer">
+          <button onClick={toggleHtp} className="navBarButton">
+            <QuestionMarkIcon fontSize="large" />
+            How To Play
+          </button>
+          <button onClick={toggleStat} className="navBarButton">
+            <BarChartIcon fontSize="large" />
+            Statistics
+          </button>
+          <button className="navBarButton">
+            <SettingsIcon fontSize="large" />
+            Settings
+          </button>
+          <button onClick={navigateHome} className="navBarButton">
+            <HomeIcon fontSize="large" />
+            Home
+          </button>
+        </div>
+      </MobileNav>
     </div>
   );
 };
