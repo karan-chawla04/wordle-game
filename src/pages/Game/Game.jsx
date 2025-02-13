@@ -160,7 +160,6 @@ const Game = () => {
   }, []);
 
   useEffect(() => {
-    console.log(gameState);
     if (gameState.attemptedWords.length > 0) {
       const len = gameState.attemptedWords.length;
       const lastGuess = gameState.attemptedWords[len - 1];
