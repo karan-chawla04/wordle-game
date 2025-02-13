@@ -51,6 +51,12 @@
 }
 
 @media only screen and (max-width: 768px) {
+
+  .headerContainer {
+    width: calc(100% - 32px);
+    padding: 0px 16px;
+  }
+
   .headerContent {
     display: none;
   }
