@@ -8,11 +8,17 @@
   justify-content: space-between;
 }
 
+.headerStart {
+  display: flex;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
 .headerLogo {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 20px;
+  gap: 8px;
 }
 
 .headerLogo:hover {
@@ -50,6 +56,10 @@
   background-color: var(--backgroundGrey);
 }
 
+.onlyMobile {
+  display: none;
+}
+
 @media only screen and (max-width: 768px) {
 
   .headerContainer {
@@ -57,7 +67,16 @@
     padding: 0px 16px;
   }
 
+  .headerStart {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   .headerContent {
     display: none;
+  }
+
+  .onlyMobile {
+    display: block;
   }
 }
