@@ -61,12 +61,25 @@
 }
 
 .mobileNavContainer {
-  padding: 16px 0;
+  margin: 16px 0;
   min-width: 240px;
+}
+
+.navHeader {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 1vw;
+  gap: 12px;
+}
+
+.navButtonList {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   align-items: stretch;
+  border-top: 1px solid var(--backgroundGreyDark);
 }
 
 .navBarButton {
@@ -79,6 +92,7 @@
   gap: 16px;
   border: none;
   background-color: transparent;
+  border-bottom: 1px solid var(--backgroundGreyDark);
 }
 
 .navBarButton:hover {
@@ -104,5 +118,14 @@
 
   .onlyMobile {
     display: block;
+  }
+
+  .headerIcon img {
+    height: 32px;
+    width: 32px;
+  }
+
+  h1 {
+    font-size: 24px;
   }
 }

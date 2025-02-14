@@ -74,22 +74,30 @@ const Header = () => {
       <StatsDialog isOpen={statOpen} onClose={toggleStat} />
       <MobileNav isOpen={navOpen} onClose={toggleNav}>
         <div className="mobileNavContainer">
-          <button onClick={toggleHtp} className="navBarButton">
-            <QuestionMarkIcon fontSize="large" />
-            How To Play
-          </button>
-          <button onClick={toggleStat} className="navBarButton">
-            <BarChartIcon fontSize="large" />
-            Statistics
-          </button>
-          <button className="navBarButton">
-            <SettingsIcon fontSize="large" />
-            Settings
-          </button>
-          <button onClick={navigateHome} className="navBarButton">
-            <HomeIcon fontSize="large" />
-            Home
-          </button>
+          <div className="navHeader">
+            <div className="headerIcon">
+              <img src={WordleIcon} alt="" />
+            </div>
+            <h1>Wordle</h1>
+          </div>
+          <div className="navButtonList">
+            <button onClick={toggleHtp} className="navBarButton">
+              <QuestionMarkIcon fontSize="large" />
+              How To Play
+            </button>
+            <button onClick={toggleStat} className="navBarButton">
+              <BarChartIcon fontSize="large" />
+              Statistics
+            </button>
+            <button className="navBarButton">
+              <SettingsIcon fontSize="large" />
+              Settings
+            </button>
+            <button onClick={navigateHome} className="navBarButton">
+              <HomeIcon fontSize="large" />
+              Home
+            </button>
+          </div>
         </div>
       </MobileNav>
     </div>
