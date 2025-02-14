@@ -1,15 +1,15 @@
 .htpContainer {
-  position: relative;
-  min-height: 600px;
-  min-width: 600px;
+  max-height: 90vh;
+  max-width: 600px;
+  margin: 32px 40px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 .htpClose {
-  position: absolute;
   padding: 10px 12px;
   background-color: transparent;
-  top: 22px;
-  right: 22px;
   border: 0px;
   border-radius: 40px;
 }
@@ -20,17 +20,13 @@
 }
 
 .innerHtp {
-  height: calc(100% - 10px);
-  width: calc(100% - 120px);
-  position: absolute;
-  top: 10px;
-  left: 60px;
-
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
+  padding-right: 32px;
+  padding-top: 12px;
 }
 
 .htpHead {
@@ -42,8 +38,11 @@
   text-transform: none;
   text-align: left;
   margin-bottom: 4px;
-  margin-top: 29px;
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--backgroundGrey);
+  padding-bottom: 8px;
 }
 
 .htpContent {
@@ -60,20 +59,24 @@
 
 @media only screen and (max-width: 768px) {
   .htpContainer {
-    min-height: 600px;
-    min-width: 320px;
+    min-height: 64vh;
+    max-width: 86vh;
+    margin: 8px 16px;
   }
 
-  .htpClose {
-    top: 26px;
-    right: 10px;
+  .htpHead {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 0px;
+    border-bottom: 1px solid var(--backgroundGrey);
+    padding-bottom: 4px;
   }
 
   .innerHtp {
-    height: calc(100% - 20px);
-    width: calc(100% - 40px);
-    left: 24px;
     gap: 10px;
+    padding-right: 0;
+    padding-bottom: 12px;
   }
 
   .htpContent {

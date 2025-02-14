@@ -40,3 +40,10 @@
   background-color: #787c7e;
   border-color: #787c7e;
 }
+
+@media only screen and (max-width: 768px) {
+  .letterBox {
+    min-width: 32px;
+    min-height: 40px;
+  }
+}

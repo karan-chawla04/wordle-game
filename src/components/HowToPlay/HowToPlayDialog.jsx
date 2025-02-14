@@ -14,9 +14,14 @@ const HowToPlayDialog = ({ isOpen, onClose }) => {
       TransitionComponent={SlideUp}
     >
       <div className="htpContainer">
+        <div className="htpHead">
+          <div className="htpHeader">How to Play</div>
+          <button onClick={onClose} className="htpClose">
+            <CloseIcon fontSize="large" />
+          </button>
+        </div>
         <div className="innerHtp">
           <div>
-            <div className="htpHead">How to Play</div>
             <div className="htpContent">Guess the Word in 6 tries.</div>
           </div>
           <div className="htpContent">
@@ -48,9 +53,6 @@ const HowToPlayDialog = ({ isOpen, onClose }) => {
             <strong>U</strong> is not in the word in any spot.
           </div>
         </div>
-        <button onClick={onClose} className="htpClose">
-          <CloseIcon fontSize="large" />
-        </button>
       </div>
     </Dialog>
   );
