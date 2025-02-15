@@ -11,6 +11,7 @@ import {
   checkWordExistence,
 } from "../../helpers/general";
 import GameOverDialog from "../../components/GameOver/GameOverDialog";
+import HelpBot from "../../components/HelpBot/HelpBot";
 
 const Game = () => {
   const [correctWord, setCorrectWord] = useState("");
@@ -191,6 +192,7 @@ const Game = () => {
   return (
     <>
       <Header />
+      <HelpBot gameState={gameState} />
       <div className="GameArea">
         {gameState && (
           <>

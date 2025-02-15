@@ -65,3 +65,16 @@ export const getRandomHardWord = () => {
 export const checkWordExistence = (userWord) => {
   return allWordSet.has(userWord);
 };
+
+export const suggestGoodWords = (regex) => {
+  let possibleWords = [];
+  for (const x of allWordSet) {
+    if (regex.test(x)) {
+      possibleWords.push(x);
+    }
+    if (possibleWords.length >= 100) {
+      break;
+    }
+  }
+  return possibleWords;
+};
