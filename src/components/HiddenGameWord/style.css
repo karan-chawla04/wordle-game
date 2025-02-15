@@ -40,9 +40,23 @@
 
 .revealLink {
   text-decoration: underline;
-
 }
 
 .revealLink:hover {
   cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .hiddenWordHolder .letterBox {
+    min-width: 32px;
+    min-height: 40px;
+  }
+
+  .blurrBox {
+    width: 204px;
+  }
+
+  .revealLink {
+    font-size: small;
+  }
 }
