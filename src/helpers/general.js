@@ -66,11 +66,28 @@ export const checkWordExistence = (userWord) => {
   return allWordSet.has(userWord);
 };
 
-export const suggestGoodWords = (regex) => {
+export const suggestGoodWords = (regex, letterMap) => {
   let possibleWords = [];
+  const allLetters = "abcdefghijklmnopqrstuvwxyz";
+
   for (const x of allWordSet) {
     if (regex.test(x)) {
-      possibleWords.push(x);
+      let XMap = new Map();
+      for (const letter of allLetters) {
+        XMap.set(letter, 0);
+      }
+      for (const letter of x) {
+        XMap.set(letter, XMap.get(letter) + 1);
+      }
+
+      let want = true;
+      for (const letter of allLetters) {
+        if (XMap.get(letter) < letterMap.get(letter)) {
+          want = false;
+        }
+      }
+
+      if (want) possibleWords.push(x);
     }
     if (possibleWords.length >= 100) {
       break;
