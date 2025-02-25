@@ -2,7 +2,7 @@
 
 This project was inspired by the NYT's wordle game and it was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Hosted Link
+## Hosted Link
 
 The game can be played at [Wordle - by Karan Chawla](https://wordle-karan.netlify.app/)
 
