@@ -14,9 +14,8 @@ import GameOverDialog from "../../components/GameOver/GameOverDialog";
 import HelpBot from "../../components/HelpBot/HelpBot";
 
 const Game = () => {
-  const [correctWord, setCorrectWord] = useState("");
   const [gameState, setGameState] = useState({
-    correctWord: correctWord,
+    correctWord: "",
     attemptsRemains: 6,
     attemptedWords: [],
     currentWord: "",
@@ -61,7 +60,6 @@ const Game = () => {
       let randomWord;
       if (mode === "hard") {
         randomWord = getRandomHardWord();
-        setCorrectWord(randomWord);
         setGameState((prevGameState) => {
           let gameState = { ...prevGameState };
           gameState.correctWord = randomWord;
@@ -70,7 +68,6 @@ const Game = () => {
         });
       } else {
         randomWord = getRandomWord();
-        setCorrectWord(randomWord);
         setGameState((prevGameState) => {
           let gameState = { ...prevGameState };
           gameState.correctWord = randomWord;
@@ -192,7 +189,6 @@ const Game = () => {
   return (
     <>
       <Header />
-      <HelpBot gameState={gameState} />
       <div className="GameArea">
         {gameState && (
           <>
@@ -205,7 +201,7 @@ const Game = () => {
                       userWord={attemptedWord}
                       key={index}
                       submitted={true}
-                      correctWord={correctWord}
+                      correctWord={gameState.correctWord}
                     />
                   );
                 } else {
@@ -217,7 +213,7 @@ const Game = () => {
                     userWord={attemptedWord}
                     key={index}
                     submitted={true}
-                    correctWord={correctWord}
+                    correctWord={gameState.correctWord}
                   />
                 );
               }
