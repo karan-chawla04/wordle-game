@@ -81,7 +81,19 @@ const Game = () => {
   };
 
   useEffect(() => {
-    fetchWord();
+    const savedGame = loadGameFromLocal();
+    if (savedGame) {
+      if (
+        savedGame.attemptsRemains > 0 &&
+        !savedGame.attemptedWords.includes(savedGame.correctWord)
+      ) {
+        setGameState(savedGame);
+      } else {
+        fetchWord();
+      }
+    } else {
+      fetchWord();
+    }
   }, []);
 
   const resetGame = (mode = "normal") => {
@@ -144,8 +156,19 @@ const Game = () => {
         } else {
           performVibration();
         }
+        saveGameToLocal(gameState);
         return gameState;
       });
+    }
+  };
+
+  const saveGameToLocal = (currGameState) => {
+    localStorage.setItem("currGame", JSON.stringify(currGameState));
+  };
+  const loadGameFromLocal = () => {
+    const currGameStateJson = localStorage.getItem("currGame");
+    if (currGameStateJson) {
+      return JSON.parse(currGameStateJson);
     }
   };
 
