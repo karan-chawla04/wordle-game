@@ -11,7 +11,6 @@ import {
   checkWordExistence,
 } from "../../helpers/general";
 import GameOverDialog from "../../components/GameOver/GameOverDialog";
-import HelpBot from "../../components/HelpBot/HelpBot";
 
 const Game = () => {
   const [gameState, setGameState] = useState({
