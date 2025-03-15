@@ -49,11 +49,20 @@
   align-items: center;
   border: none;
   background-color: transparent;
+
+  font-size: large;
+  font-weight: 700;
 }
 
 .headerButton:hover {
   cursor: pointer;
   background-color: var(--backgroundGrey);
+  text-decoration: underline;
+}
+
+.headerButton:hover:disabled {
+  background-color: transparent;
+  text-decoration: none;
 }
 
 .onlyMobile {

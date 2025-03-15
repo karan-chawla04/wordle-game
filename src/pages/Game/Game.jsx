@@ -20,6 +20,7 @@ const Game = () => {
     currentWord: "",
     winner: false,
     mode: "normal",
+    wordSuggested : false,
   });
   const [vibrateWord, setVibrateWord] = useState(false);
   const [openGameOver, setOpenGameOver] = useState(false);
@@ -27,6 +28,14 @@ const Game = () => {
 
   const toggleGameOver = () => {
     setOpenGameOver(!openGameOver);
+  };
+
+  const markSuggested = ()=>{
+    setGameState((prevGameState) => {
+      let gameState = { ...prevGameState };
+      gameState.wordSuggested = true;
+      return gameState;
+    });
   };
 
   const saveGame = (winner) => {
@@ -102,6 +111,7 @@ const Game = () => {
       attemptedWords: [],
       currentWord: "",
       winner: false,
+      wordSuggested : false,
     });
     fetchWord(mode);
     setOpenGameOver(false);
@@ -208,9 +218,10 @@ const Game = () => {
     }
   }, [gameState]);
 
+
   return (
     <>
-      <Header />
+      <Header gameState={gameState} markSuggested={markSuggested}/>
       <div className="GameArea">
         {gameState && (
           <>

@@ -1,9 +1,8 @@
 import React from "react";
-import { useEffect } from "react";
 import { getWordMatchArr, suggestGoodWords } from "../../helpers/general";
 import { Sets } from "../../helpers/dataStructures";
 
-const HelpBot = ({ gameState }) => {
+const HelpBot = ({ gameState, markSuggested }) => {
   const findGoodWord = () => {
     const attemptedWords = gameState.attemptedWords;
 
@@ -71,15 +70,6 @@ const HelpBot = ({ gameState }) => {
           }
         }
       }
-      // for (let i = 0; i < matchArr.length; i++) {
-      //   const ele = matchArr[i];
-      //   const letter = ele[0];
-      //   const color = ele[1];
-
-      //   if (color === "yellow") {
-      //     yellowMap.set(letter, yellowMap.get(letter) + 1);
-      //   }
-      // }
       yellowMapArr.push(yellowMap);
       greenMapArr.push(greenMap);
     }
@@ -150,17 +140,17 @@ const HelpBot = ({ gameState }) => {
     const goodWords = suggestGoodWords(regex, letterMap);
     const randomIndex = Math.floor(Math.random() * goodWords.length);
     alert(goodWords[randomIndex]);
+    markSuggested();
   };
+
 
   return (
     <>
-      <button
-        style={{
-          textDecoration: "underline",
-        }}
+      <button disabled={gameState.wordSuggested}
+        className='headerButton'
         onClick={findGoodWord}
       >
-        Suggest word
+        Word Suggest
       </button>
     </>
   );

@@ -11,13 +11,15 @@ import HomeIcon from "@mui/icons-material/Home";
 import Tooltip from "@mui/material/Tooltip";
 import StatsDialog from "../Stats/StatsDialog";
 import MobileNav from "./MobileNav";
+import HelpBot from "../HelpBot/HelpBot";
 
-const Header = () => {
+const Header = ({gameState, markSuggested}) => {
   const navigate = useNavigate();
 
   const [htpOpen, setHtpOpen] = useState(false);
   const [statOpen, setStateOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
+
 
   const toggleHtp = () => {
     setHtpOpen(!htpOpen);
@@ -37,6 +39,7 @@ const Header = () => {
 
   return (
     <div className="headerContainer">
+
       <div className="headerStart">
         <div onClick={navigateHome} className="headerLogo">
           <div className="headerIcon">
@@ -49,6 +52,7 @@ const Header = () => {
         </button>
       </div>
       <div className="headerContent">
+        <HelpBot gameState={gameState} markSuggested={markSuggested}/>
         <Tooltip title="How to Play" arrow>
           <button onClick={toggleHtp} className="headerButton">
             <QuestionMarkIcon fontSize="large" />
