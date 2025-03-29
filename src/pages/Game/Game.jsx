@@ -221,7 +221,7 @@ const Game = () => {
 
   return (
     <>
-      <Header gameState={gameState} markSuggested={markSuggested}/>
+      <Header gameState={gameState} markSuggested={markSuggested} resetGame={resetGame}/>
       <div className="GameArea">
         {gameState && (
           <>

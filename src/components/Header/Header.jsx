@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import SettingsIcon from "@mui/icons-material/Settings";
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import MenuIcon from "@mui/icons-material/Menu";
 import HowToPlayDialog from "../HowToPlay/HowToPlayDialog";
 import HomeIcon from "@mui/icons-material/Home";
@@ -13,7 +14,7 @@ import StatsDialog from "../Stats/StatsDialog";
 import MobileNav from "./MobileNav";
 import HelpBot from "../HelpBot/HelpBot";
 
-const Header = ({gameState, markSuggested}) => {
+const Header = ({gameState, markSuggested, resetGame}) => {
   const navigate = useNavigate();
 
   const [htpOpen, setHtpOpen] = useState(false);
@@ -52,6 +53,11 @@ const Header = ({gameState, markSuggested}) => {
         </button>
       </div>
       <div className="headerContent">
+        <Tooltip title="New Game" arrow>
+          <button onClick={resetGame} className="headerButton">
+            <PlayCircleIcon fontSize="large" />
+          </button>
+        </Tooltip>
         <HelpBot gameState={gameState} markSuggested={markSuggested}/>
         <Tooltip title="How to Play" arrow>
           <button onClick={toggleHtp} className="headerButton">
@@ -63,11 +69,11 @@ const Header = ({gameState, markSuggested}) => {
             <BarChartIcon fontSize="large" />
           </button>
         </Tooltip>
-        <Tooltip title="Settings" arrow>
+        {/* <Tooltip title="Settings" arrow>
           <button className="headerButton">
             <SettingsIcon fontSize="large" />
           </button>
-        </Tooltip>
+        </Tooltip> */}
         <Tooltip title="Home" arrow>
           <button onClick={navigateHome} className="headerButton">
             <HomeIcon fontSize="large" />
@@ -85,6 +91,10 @@ const Header = ({gameState, markSuggested}) => {
             <h1>Wordle</h1>
           </div>
           <div className="navButtonList">
+          <button onClick={toggleHtp} className="navBarButton">
+              <PlayCircleIcon fontSize="large" />
+              New Game
+            </button>
             <button onClick={toggleHtp} className="navBarButton">
               <QuestionMarkIcon fontSize="large" />
               How To Play
@@ -93,10 +103,10 @@ const Header = ({gameState, markSuggested}) => {
               <BarChartIcon fontSize="large" />
               Statistics
             </button>
-            <button className="navBarButton">
+            {/* <button className="navBarButton">
               <SettingsIcon fontSize="large" />
               Settings
-            </button>
+            </button> */}
             <button onClick={navigateHome} className="navBarButton">
               <HomeIcon fontSize="large" />
               Home
