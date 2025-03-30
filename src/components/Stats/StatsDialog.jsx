@@ -4,6 +4,35 @@ import "./style.css";
 import { Dialog } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import SlideUp from "../../Transitions/SlideUp";
+import { BarChart } from "@mui/x-charts";
+
+const chartSetting = {
+  yAxis: [
+    {
+      scaleType: "band",
+      dataKey: "key",
+      label: "Attempts",
+
+    },
+  ],
+  series: [{ dataKey: "value" }],
+  layout: "horizontal",
+  xAxis: [
+    {
+      label: "Games",
+      colorMap: {
+        type: 'continuous',
+        min: 0,
+        max: 6,
+        color: ['orange', 'green']
+      }
+    },
+  ],
+  width: 520,
+  height: 280,
+  borderRadius: 4,
+  disableAxisListener: true,
+};
 
 const StatsDialog = ({ isOpen, onClose }) => {
   const [statWindow, setStatWindow] = useState("normal");
@@ -33,7 +62,7 @@ const StatsDialog = ({ isOpen, onClose }) => {
         );
         let total = 0;
         let win = 0;
-        stats.distribution = [0, 0, 0, 0, 0, 0]
+        stats.distribution = [0, 0, 0, 0, 0, 0];
         let maxStreak = 0;
         let currentStreak = 0;
 
@@ -42,21 +71,20 @@ const StatsDialog = ({ isOpen, onClose }) => {
           if (game.winner === true) {
             win += 1;
             currentStreak += 1;
-            if(game?.attempts <= 6){
+            if (game?.attempts <= 6) {
               console.log(game.attempts);
               stats.distribution[game.attempts - 1] += 1;
             }
-          }
-          else{
+          } else {
             currentStreak = 0;
           }
           maxStreak = Math.max(maxStreak, currentStreak);
         }
 
-        stats.played = total;
-        stats.win_per = (win / total) * 100;
-        stats.maxStreak = maxStreak;
-        stats.currentStreak = currentStreak;
+        stats.played = Math.round(total);
+        stats.win_per = Math.round(((win / total) * 1000) / 10);
+        stats.maxStreak = Math.round(maxStreak);
+        stats.currentStreak = Math.round(currentStreak);
       }
       return stats;
     });
@@ -66,9 +94,18 @@ const StatsDialog = ({ isOpen, onClose }) => {
     calculateStats();
   }, [statWindow, isOpen]);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(stats);
   }, [stats]);
+
+  let dataSet = [];
+
+  for (let i = 0; i < stats.distribution.length; i++) {
+    dataSet.push({
+      key: i + 1,
+      value: stats.distribution[i],
+    });
+  }
 
   return (
     <Dialog
@@ -122,12 +159,11 @@ const StatsDialog = ({ isOpen, onClose }) => {
                 </div>
                 <div className="statsDistribution">
                   <div>Guess Distribution</div>
+                  <BarChart dataset={dataSet} {...chartSetting} />
                 </div>
               </>
-            ):(
-              <div className="statsMsg">
-                No stats available yet...
-              </div>
+            ) : (
+              <div className="statsMsg">No stats available yet...</div>
             )}
           </div>
         </div>
