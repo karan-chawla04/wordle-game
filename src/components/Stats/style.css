@@ -94,6 +94,37 @@
   padding: 16px 16px;
 }
 
+.statsRow {
+  display: flex;
+  justify-content: flex-start;
+  gap: 24px;
+
+  font-family: "nyt-karnakcondensed";
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 22px;
+  text-transform: none;
+  text-align: center;
+}
+.statsRow .value{
+  font-size: 40px;
+  line-height: 40px;
+  font-weight: 600;
+
+}
+
+.statsItem {
+  max-width: 60px;
+  padding: 12px;
+}
+
+.statsMsg {
+  padding: 12px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--backgroundGreyDark);
+}
+
 @media only screen and (max-width: 768px) {
   .statsContainer {
     min-height: 600px;

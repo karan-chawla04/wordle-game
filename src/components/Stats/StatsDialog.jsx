@@ -33,15 +33,30 @@ const StatsDialog = ({ isOpen, onClose }) => {
         );
         let total = 0;
         let win = 0;
+        stats.distribution = [0, 0, 0, 0, 0, 0]
+        let maxStreak = 0;
+        let currentStreak = 0;
+
         for (const game of filteredGames) {
           total += 1;
           if (game.winner === true) {
             win += 1;
+            currentStreak += 1;
+            if(game?.attempts <= 6){
+              console.log(game.attempts);
+              stats.distribution[game.attempts - 1] += 1;
+            }
           }
+          else{
+            currentStreak = 0;
+          }
+          maxStreak = Math.max(maxStreak, currentStreak);
         }
 
         stats.played = total;
         stats.win_per = (win / total) * 100;
+        stats.maxStreak = maxStreak;
+        stats.currentStreak = currentStreak;
       }
       return stats;
     });
@@ -50,6 +65,10 @@ const StatsDialog = ({ isOpen, onClose }) => {
   useEffect(() => {
     calculateStats();
   }, [statWindow, isOpen]);
+
+  useEffect(()=>{
+    console.log(stats);
+  }, [stats]);
 
   return (
     <Dialog
@@ -81,9 +100,35 @@ const StatsDialog = ({ isOpen, onClose }) => {
             </button>
           </div>
           <div className="statsBody">
-            played: {stats.played}
-            <br />
-            win percent: {stats.win_per}
+            {stats.played ? (
+              <>
+                <div className="statsRow">
+                  <div className="statsItem">
+                    <div className="value">{stats.played}</div>
+                    <div>Played</div>
+                  </div>
+                  <div className="statsItem">
+                    <div className="value">{stats.win_per}</div>
+                    <div>Win %</div>
+                  </div>
+                  <div className="statsItem">
+                    <div className="value">{stats.currentStreak}</div>
+                    <div>Current Streak</div>
+                  </div>
+                  <div className="statsItem">
+                    <div className="value">{stats.maxStreak}</div>
+                    <div>Max Streak</div>
+                  </div>
+                </div>
+                <div className="statsDistribution">
+                  <div>Guess Distribution</div>
+                </div>
+              </>
+            ):(
+              <div className="statsMsg">
+                No stats available yet...
+              </div>
+            )}
           </div>
         </div>
       </div>
