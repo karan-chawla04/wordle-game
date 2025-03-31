@@ -76,6 +76,7 @@
 
 .navButton:hover {
   cursor: pointer;
+  background-color: var(--backgroundGreyMed);
 }
 
 @media only screen and (max-width: 768px) {

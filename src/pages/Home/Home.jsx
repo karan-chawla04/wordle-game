@@ -3,14 +3,20 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { WordleIcon } from "../../images";
 import HowToPlayDialog from "../../components/HowToPlay/HowToPlayDialog";
+import AboutDialog from "../../components/About/AboutDialog";
 import "./style.css";
 
 const Home = () => {
   const [htpOpen, setHtpOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const navigate = useNavigate();
 
   const toggleHowToPlay = () => {
     setHtpOpen(!htpOpen);
+  };
+
+  const toggleAbout = () => {
+    setAboutOpen(!aboutOpen);
   };
 
   const handlePlay = () => {
@@ -25,7 +31,7 @@ const Home = () => {
       <h1>Wordle</h1>
       <h2>Get 6 chances to guess the word</h2>
       <div className="buttonHolder">
-        <button>About</button>
+        <button onClick={toggleAbout}>About</button>
         <button onClick={toggleHowToPlay}>How to Play</button>
         <button className="main" onClick={handlePlay}>
           Play
@@ -37,6 +43,7 @@ const Home = () => {
         official game at nytime's official site. Thanks.
       </div>
       <HowToPlayDialog isOpen={htpOpen} onClose={toggleHowToPlay} />
+      <AboutDialog isOpen={aboutOpen} onClose={toggleAbout} />
     </div>
   );
 };
