@@ -1,6 +1,5 @@
 .gameOverContainer {
   padding: 20px;
-  min-height: 400px;
   min-width: 500px;
   margin-top: 12px;
 
@@ -81,9 +80,7 @@
 
 @media only screen and (max-width: 768px) {
   .gameOverContainer {
-    min-height: 55vh;
     min-width: calc(80vw - 30px);
-
   }
 
   .gameOverClose {

@@ -82,7 +82,7 @@ const GameOverDialog = ({
           </h4>
           <div className="navButtonHolder">
             <button
-              className="navButton main"
+              className="navButton"
               onClick={() => {
                 setRevealWord(false);
                 resetGame("normal");
@@ -91,7 +91,7 @@ const GameOverDialog = ({
               Play Again
             </button>
             <button
-              className="navButton main"
+              className="navButton"
               onClick={() => {
                 setRevealWord(false);
                 resetGame("hard");
@@ -99,10 +99,10 @@ const GameOverDialog = ({
             >
               Play Again (Hard Word)
             </button>
-            <button className="navButton" onClick={navigateHome}>
+            {/* <button className="navButton" onClick={navigateHome}>
               Home
-            </button>
-            <button className="navButton" onClick={toggleToStats}>
+            </button> */}
+            <button className="navButton onlyDesktop main" onClick={toggleToStats}>
               Stats
             </button>
           </div>

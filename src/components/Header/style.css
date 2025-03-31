@@ -69,6 +69,10 @@
   display: none;
 }
 
+.onlyDesktop {
+  display: block;
+}
+
 .mobileNavContainer {
   margin: 16px 0;
   min-width: 240px;
@@ -127,6 +131,10 @@
 
   .onlyMobile {
     display: block;
+  }
+
+  .onlyDesktop {
+    display: none;
   }
 
   .headerIcon img {

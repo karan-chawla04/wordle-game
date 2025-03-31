@@ -91,7 +91,7 @@ const Header = ({gameState, markSuggested, resetGame}) => {
             <h1>Wordle</h1>
           </div>
           <div className="navButtonList">
-          <button onClick={toggleHtp} className="navBarButton">
+          <button onClick={resetGame} className="navBarButton">
               <PlayCircleIcon fontSize="large" />
               New Game
             </button>
@@ -99,10 +99,10 @@ const Header = ({gameState, markSuggested, resetGame}) => {
               <QuestionMarkIcon fontSize="large" />
               How To Play
             </button>
-            <button onClick={toggleStat} className="navBarButton">
+            {/* <button onClick={toggleStat} className="navBarButton">
               <BarChartIcon fontSize="large" />
               Statistics
-            </button>
+            </button> */}
             {/* <button className="navBarButton">
               <SettingsIcon fontSize="large" />
               Settings
