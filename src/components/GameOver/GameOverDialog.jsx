@@ -7,7 +7,13 @@ import "./style.css";
 import { useNavigate } from "react-router-dom";
 import SlideUp from "../../Transitions/SlideUp";
 
-const GameOverDialog = ({ isOpen, gameState, resetGame, onClose }) => {
+const GameOverDialog = ({
+  isOpen,
+  gameState,
+  resetGame,
+  onClose,
+  toggleToStats,
+}) => {
   const navigate = useNavigate();
   const [revealWord, setRevealWord] = useState(false);
 
@@ -96,8 +102,8 @@ const GameOverDialog = ({ isOpen, gameState, resetGame, onClose }) => {
             <button className="navButton" onClick={navigateHome}>
               Home
             </button>
-            <button className="navButton" onClick={navigateHome}>
-              Share Game
+            <button className="navButton" onClick={toggleToStats}>
+              Stats
             </button>
           </div>
         </div>

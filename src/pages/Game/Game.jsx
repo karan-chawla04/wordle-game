@@ -11,6 +11,7 @@ import {
   checkWordExistence,
 } from "../../helpers/general";
 import GameOverDialog from "../../components/GameOver/GameOverDialog";
+import StatsDialog from "../../components/Stats/StatsDialog";
 
 const Game = () => {
   const [gameState, setGameState] = useState({
@@ -20,17 +21,18 @@ const Game = () => {
     currentWord: "",
     winner: false,
     mode: "normal",
-    wordSuggested : false,
+    wordSuggested: false,
   });
   const [vibrateWord, setVibrateWord] = useState(false);
   const [openGameOver, setOpenGameOver] = useState(false);
+  const [openStats, setOpenStats] = useState(false);
   const [gameCompleted, setGameCompleted] = useState(false);
 
   const toggleGameOver = () => {
     setOpenGameOver(!openGameOver);
   };
 
-  const markSuggested = ()=>{
+  const markSuggested = () => {
     setGameState((prevGameState) => {
       let gameState = { ...prevGameState };
       gameState.wordSuggested = true;
@@ -111,7 +113,7 @@ const Game = () => {
       attemptedWords: [],
       currentWord: "",
       winner: false,
-      wordSuggested : false,
+      wordSuggested: false,
     });
     fetchWord(mode);
     setOpenGameOver(false);
@@ -218,10 +220,13 @@ const Game = () => {
     }
   }, [gameState]);
 
-
   return (
     <>
-      <Header gameState={gameState} markSuggested={markSuggested} resetGame={resetGame}/>
+      <Header
+        gameState={gameState}
+        markSuggested={markSuggested}
+        resetGame={resetGame}
+      />
       <div className="GameArea">
         {gameState && (
           <>
@@ -287,6 +292,16 @@ const Game = () => {
         gameState={gameState}
         onClose={toggleGameOver}
         resetGame={resetGame}
+        toggleToStats={() => {
+          setOpenGameOver(false);
+          setOpenStats(true);
+        }}
+      />
+      <StatsDialog
+        isOpen={openStats}
+        onClose={() => {
+          setOpenStats(false);
+        }}
       />
     </>
   );
